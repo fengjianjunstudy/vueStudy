@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>起步</title>
+</head>
+<body>
+	<div id="app" :title = "message">
+		<div :title="message" @click="show()">{{message}}</div>
+		<div v-if="seen">可以看见我哦</div>
+		<input type="text" name="" v-model="message">
+		<button @click="addTool">提交</button>
+		<ul>
+			<li v-for="tool in tools">{{tool.text}}</li>
+		</ul>
+		<ol>
+			<todo-item v-for="tool in tools" :tool = "tool"></todo-item>
+		</ol>
+	</div>
+	
+	<script src="https://unpkg.com/vue"></script>
+	<script type="text/javascript">
+		Vue.component("todo-item",{
+			props:['tool'],
+			template:"<li>{{tool.text}}</li>"
+		})
+		var data = {
+				message:"hello vue!",
+				seen:false,
+				tools:[
+					{text:"javascript"},
+					{text:"vue"},
+					{text:"nodejs"}
+				]
+			}
+		var app = new Vue({
+			el:"#app",
+			data:data,
+			methods:{
+				show:function(){
+					this.seen = true;
+				},
+				addTool:function(){
+					var text = this.message;
+					this.tools.push({text:text})
+				}
+			}
+		})
+		console.log(app.$data === data);
+		app.$watch("message",function(newval,oldval){
+			console.log("newval "+newval);
+			console.log("oldval "+oldval);
+		})
+		app.$data.message = "hello word";
+
+	</script>
+</body>
+</html>

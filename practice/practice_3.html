@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>起步</title>
+</head>
+<body>
+	<div id="example">
+	  <p>Original message: "{{ message }}"</p>
+	  <p>Computed reversed message: "{{ reversedMessage }}"</p>
+	</div>
+	
+	<script src="https://unpkg.com/vue"></script>
+	<script type="text/javascript">
+		var vm = new Vue({
+		  el: '#example',
+		  data: {
+		    message: 'Hello',
+		    val:"hi"
+		  },
+		  computed: {
+		    // 计算属性的 getter
+		    reversedMessage: function () {
+		      // `this` 指向 vm 实例
+		      return this.message.split('').reverse().join('')
+		    }
+		  },
+		  watch:{
+		  	val:function(val){
+		  		this.val = val;
+		  	}
+		  }
+		})
+
+	</script>
+</body>
+</html>

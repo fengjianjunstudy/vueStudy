@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>起步</title>
+</head>
+<body>
+	<div id="counter-event-example">
+	  <component-a></component-a>
+	</div>
+	
+	<script src="https://unpkg.com/vue"></script>
+	<script type="text/javascript">
+		var bus = new Vue();
+		var componentB = {
+			template:"<div>component-b</div>",
+			mounted:function(){
+				console.log("mounted");
+				bus.$emit("eventA",12);
+			}
+		}
+		Vue.component("component-a",{
+			template:'<component-b></component-b>',
+			components:{
+				"component-b":componentB
+			},
+			created:function(){
+				bus.$on("eventA",function(num){
+					console.log("component-a "+num);
+				});
+			}
+		})
+		var vm = new Vue({
+			el:"#counter-event-example",
+			created:function(){
+				bus.$on("eventA",function(num){
+					console.log("vm "+num);
+				});
+			}
+		})
+	</script>
+</body>
+</html>

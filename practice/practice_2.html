@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>起步</title>
+</head>
+<body>
+	<div id="app">
+		<div v-html="rawHtml" :title="title"></div>
+		<div>{{title+"123"}}</div>
+		<div @click="click1"><div @click="click2">点击我，冒泡</div></div>
+		<div @click="click1"><div @click.stop="click2">点击我，阻止冒泡</div></div>
+	</div>
+	
+	<script src="https://unpkg.com/vue"></script>
+	<script type="text/javascript">
+		var app = new Vue({
+			el:"#app",
+			data:{
+				rawHtml:"<span style='color:red'>红色</span>",
+				title:"hello vue"
+			},
+			methods:{
+				click1:function(){
+					console.log("click1");
+				},
+				click2:function(){
+					console.log("click2");
+				}
+			}
+			
+		})
+
+	</script>
+</body>
+</html>

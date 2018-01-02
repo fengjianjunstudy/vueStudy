@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>起步</title>
+</head>
+<body>
+	<div id="app">
+		<input type="text" name="" v-model="parentMsg">
+		<my-component :message="parentMsg"></my-component>
+	</div>
+	
+	<script src="https://unpkg.com/vue"></script>
+	<script type="text/javascript">
+		var Child = {
+		    template:"<div>{{msg}}</div>",
+		    props:["message"],
+		    computed:{
+		    	msg:function(){
+		    		switch(this.message){
+		    			case "1":
+    						return "hello 1";
+						case "2":
+
+							return "hello 2";		
+		    		}
+		    	}
+		    }
+
+		}
+		var vm = new Vue({
+			components:{
+			    "my-component":Child
+			},
+			el:"#app",
+			data:{
+				parentMsg:"parent data"
+			}
+		});
+	</script>
+</body>
+</html>

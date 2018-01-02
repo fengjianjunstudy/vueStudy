@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>起步</title>
+</head>
+<body>
+	<div id="counter-event-example">
+	  <component-a>{{message}}</component-a>
+	</div>
+	
+	<script src="https://unpkg.com/vue"></script>
+	<script type="text/javascript">
+
+		Vue.component("component-a",{
+			template:'<div><div>haha</div><slot>xixi</slot></div>'
+		})
+		var vm = new Vue({
+			el:"#counter-event-example",
+			data:{
+				message:123
+			}
+		})
+	</script>
+</body>
+</html>

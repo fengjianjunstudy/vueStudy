@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>起步</title>
+</head>
+<body>
+	<div id="counter-event-example">
+	  <component :is="curView"></component>
+	</div>
+	
+	<script src="https://unpkg.com/vue"></script>
+	<script type="text/javascript">
+		var Home = {
+			template:"<div>home</div>"
+		}
+		var Archive = {
+			template:"<div>archive</div>"
+		}
+		var vm = new Vue({
+			el:"#counter-event-example",
+			data:{
+				curView:"home"
+			},
+			components:{
+				"home":Home,
+				"archive":Archive
+			}	
+		})
+	</script>
+</body>
+</html>

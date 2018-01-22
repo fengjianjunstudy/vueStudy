@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>起步</title>
+	<style>
+		.contanier {width: 1170px ; margin: 50px auto}
+		.test{ width: 25%; float: left;}
+		.test:nth-child(even){ background-color: #ccc}
+	</style>
+</head>
+<body>
+	<div id="demo">
+	  <tem :lists = "lists" :step ="step"></tem>
+	</div>
+	
+	<script src="https://unpkg.com/vue"></script>
+	<script type="text/javascript">
+		Vue.component("tem",{
+			template:"<div class='contanier'> <div class='test' v-for='list in newLists'><div v-for='obj in list'><span>{{obj.key}}</span><span>{{obj.value}}</span></div></div></div>",
+            props:["lists","step"],
+			computed:{
+				newLists:function(){
+					console.log(this.lists)
+					var _self = this;
+					var arr = [];
+					for(var i = 0;i < this.step;i++){
+					    arr.push([]);
+					}
+					this.lists.forEach(function(obj,index){
+					    console.log(obj,index)
+						arr[index%_self.step].push(obj)
+					})
+					return arr;
+				}
+			}
+
+		})
+		var vm = new Vue({
+			el:"#demo",
+			data:{
+				lists:[{key:"key1",value:1},{key:"key2",value:2},{key:"key3",value:3},{key:"key4",value:4},{key:"key5",value:5},{key:"key6",value:6},{key:"key7",value:7},{key:"key8",value:8}],
+				step:4
+			}
+		})
+	</script>
+</body>
+</html>
